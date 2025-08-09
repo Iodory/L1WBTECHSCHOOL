@@ -10,6 +10,8 @@ import (
 	"time"
 )
 
+// боже как же я наговнокодил простите
+
 func main() {
 	num := 5
 	stop := make(chan struct{})
