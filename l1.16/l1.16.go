@@ -3,19 +3,30 @@ package main
 import "fmt"
 
 func quickSort(arr []int) []int {
+	if len(arr) <= 0 {
+		return arr
+	}
 
-	for i := range arr {
-		for j := i + 1; j < len(arr); j++ {
-			if arr[i] > arr[j] {
-				arr[i], arr[j] = arr[j], arr[i]
-			}
+	var left, right []int
+	pivot := arr[len(arr)/2]
+
+	for _, v := range arr {
+		if v > pivot {
+			left = append(left, v)
+		} else if v < pivot {
+			right = append(right, v)
 		}
 	}
-	return arr
+
+	sortedR := quickSort(left)
+	sortedL := quickSort(right)
+
+	return append(append(sortedL, pivot), sortedR...)
 }
 
 func main() {
 	arr := []int{4, 5, 6, 2, 3, 9, 1, 8, 7}
-	sortArr := quickSort(arr)
-	fmt.Println(sortArr)
+	sorted := quickSort(arr)
+
+	fmt.Println(sorted)
 }
