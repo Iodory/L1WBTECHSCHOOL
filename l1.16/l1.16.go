@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func quickSort(arr []int) []int {
-	if len(arr) <= 0 {
+	if len(arr) <= 1 {
 		return arr
 	}
 
@@ -11,15 +11,15 @@ func quickSort(arr []int) []int {
 	pivot := arr[len(arr)/2]
 
 	for _, v := range arr {
-		if v > pivot {
+		if v < pivot {
 			left = append(left, v)
-		} else if v < pivot {
+		} else if v > pivot {
 			right = append(right, v)
 		}
 	}
 
-	sortedR := quickSort(left)
-	sortedL := quickSort(right)
+	sortedR := quickSort(right)
+	sortedL := quickSort(left)
 
 	return append(append(sortedL, pivot), sortedR...)
 }
